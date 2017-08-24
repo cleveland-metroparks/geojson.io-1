@@ -17,6 +17,12 @@ module.exports = function(context) {
 
         } else {
             layers = [{
+                title: 'CM Trails',
+                layer: L.tileLayer('https://api.mapbox.com/styles/v1/cleveland-metroparks/cj5ml8sy43j7t2spgfmrf7xx0/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiY2xldmVsYW5kLW1ldHJvcGFya3MiLCJhIjoiWHRKaDhuRSJ9.FGqNSOHwiCr2dmTH2JTMAA', {  
+                   accessToken: 'pk.eyJ1IjoiY2xldmVsYW5kLW1ldHJvcGFya3MiLCJhIjoiWHRKaDhuRSJ9.FGqNSOHwiCr2dmTH2JTMAA', 
+                   attribution: 'None'
+                })
+            }, {
                 title: 'Mapbox',
                 layer: L.mapbox.tileLayer('mapbox.streets')
             }, {

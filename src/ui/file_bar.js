@@ -7,7 +7,9 @@ var shpwrite = require('shp-write'),
     githubBrowser = require('@mapbox/github-file-browser'),
     gistBrowser = require('@mapbox/gist-map-browser'),
     geojsonNormalize = require('geojson-normalize'),
-    wellknown = require('wellknown');
+    wellknown = require('wellknown'),
+    proj4 = require('proj4'),
+    reproject = require('reproject');
 
 var share = require('./share'),
     modal = require('./modal.js'),
@@ -31,20 +33,20 @@ module.exports = function fileBar(context) {
     var githubBase = githubAPI ? config.GithubAPI + '/api/v3': 'https://api.github.com';
 
     var exportFormats = [{
-        title: 'GeoJSON',
-        action: downloadGeoJSON
-    }, {
-        title: 'TopoJSON',
-        action: downloadTopo
-    }, {
+    //    title: 'GeoJSON',
+    //    action: downloadGeoJSON
+    //}, {
+    //    title: 'TopoJSON',
+    //    action: downloadTopo
+    //}, { 
         title: 'CSV',
         action: downloadDSV
     }, {
         title: 'KML',
         action: downloadKML
-    }, {
-        title: 'WKT',
-        action: downloadWKT
+    //}, {
+    //    title: 'WKT',
+    //    action: downloadWKT
     }];
 
     if (shpSupport) {
@@ -53,6 +55,12 @@ module.exports = function fileBar(context) {
             action: downloadShp
         });
     }
+
+    var ohionorth = '+proj=lcc +lat_1=41.7 +lat_2=40.43333333333333 +lat_0=39.66666666666666 +lon_0=-82.5 +x_0=600000 +y_0=0 +ellps=GRS80 +datum=NAD83 +to_meter=0.3048006096012192 +no_defs',
+        epsg3734 = proj4.Proj(ohionorth),
+        crss = {
+            'EPSG:3734': epsg3734
+        };
 
     function bar(selection) {
 
@@ -528,7 +536,7 @@ module.exports = function fileBar(context) {
         if (d3.event) d3.event.preventDefault();
         d3.select('.map').classed('loading', true);
         try {
-            shpwrite.download(context.data.get('map'));
+            shpwrite.download(reproject.reproject(context.data.get('map'),proj4.WGS84, epsg3734, crss));
         } finally {
             d3.select('.map').classed('loading', false);
         }
