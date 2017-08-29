@@ -226,6 +226,10 @@ table tbody tr td input {
     margin:0;
 }
 
+table tbody tr td input:focus {
+  background-color: lightblue
+}
+
 input[type=text] {
     font:inherit;
 }
