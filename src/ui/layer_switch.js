@@ -17,21 +17,25 @@ module.exports = function(context) {
 
         } else {
             layers = [{
+                title: 'CM',
+                layer: L.tileLayer('https://api.mapbox.com/styles/v1/cleveland-metroparks/cj6xo8y30a6o02rmzufgj9ln6/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiY2xldmVsYW5kLW1ldHJvcGFya3MiLCJhIjoiWHRKaDhuRSJ9.FGqNSOHwiCr2dmTH2JTMAA', {  
+                   accessToken: 'pk.eyJ1IjoiY2xldmVsYW5kLW1ldHJvcGFya3MiLCJhIjoiWHRKaDhuRSJ9.FGqNSOHwiCr2dmTH2JTMAA', 
+                   attribution: '&copy; <a href="https://mapbox.com">Mapbox</a> | &copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors | <a href="https://clevelandmetroparks.org">Cleveland Metroparks</a>'
+                }) 
+            }, {
                 title: 'CM Trails',
                 layer: L.tileLayer('https://api.mapbox.com/styles/v1/cleveland-metroparks/cj5ml8sy43j7t2spgfmrf7xx0/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiY2xldmVsYW5kLW1ldHJvcGFya3MiLCJhIjoiWHRKaDhuRSJ9.FGqNSOHwiCr2dmTH2JTMAA', {  
                    accessToken: 'pk.eyJ1IjoiY2xldmVsYW5kLW1ldHJvcGFya3MiLCJhIjoiWHRKaDhuRSJ9.FGqNSOHwiCr2dmTH2JTMAA', 
-                   attribution: 'None'
+                   attribution: '&copy; <a href="https://mapbox.com">Mapbox</a> | &copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors | <a href="https://clevelandmetroparks.org">Cleveland Metroparks</a>'
                 })
             }, {
                 title: 'Mapbox',
                 layer: L.mapbox.tileLayer('mapbox.streets')
             }, {
                 title: 'Satellite',
-                layer: L.mapbox.tileLayer('mapbox.satellite')
-            }, {
-                title: 'OCM',
-                layer: L.tileLayer('https://a.tile.thunderforest.com/cycle/{z}/{x}/{y}.png', {
-                   attribution: 'Maps &copy; <a href="http://www.thunderforest.com/">Thunderforest</a>, Data &copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                layer: L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v10/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiY2xldmVsYW5kLW1ldHJvcGFya3MiLCJhIjoiWHRKaDhuRSJ9.FGqNSOHwiCr2dmTH2JTMAA', {
+                    accessToken: 'pk.eyJ1IjoiY2xldmVsYW5kLW1ldHJvcGFya3MiLCJhIjoiWHRKaDhuRSJ9.FGqNSOHwiCr2dmTH2JTMAA',
+                   attribution: '&copy; <a href="https://mapbox.com">Mapbox</a> | &copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors | <a href="https://clevelandmetroparks.org">Cleveland Metroparks</a>'
                 })
             }, {
                 title: 'OSM',
